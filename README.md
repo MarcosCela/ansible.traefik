@@ -31,14 +31,13 @@ The role requires the following variables, and will fail if they are not set:
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: proxy
-      roles:
-         - role: ansible-traefik
-           acme_email: my@mail.org
-           docker_domain: myorganization.org
-           
+```yaml
+- hosts: proxy
+  roles:
+     - role: ansible-traefik
+       acme_email: my@mail.org
+       docker_domain: myorganization.org
+```
 
 License
 -------
