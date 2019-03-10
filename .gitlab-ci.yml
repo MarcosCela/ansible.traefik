@@ -1,27 +1,10 @@
 ---
-image: docker:stable
-services:
-  - docker:dind
+image: registry.gitlab.com/marcos.cela/ansible.ci:latest
 
 stages:
-  - build
-  - test
-  - release
-  - deploy
+  - yaml-lint
 
-variables:
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_DRIVER: overlay2
-  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
-
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-
-
-release-image:
-  stage: release
+lint-yamlfile:
+  stage: yaml-lint
   script:
-    - docker build --pull -t $CONTAINER_RELEASE_IMAGE .
-    - docker push $CONTAINER_RELEASE_IMAGE
-  only:
-    - master
+    - yamllint .
