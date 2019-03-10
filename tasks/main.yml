@@ -16,7 +16,7 @@
   copy:
     content: ""
     dest: "{{ acme_file }}"
-    force: no
+    force: false
     group: root
     owner: root
     mode: 0600
@@ -38,8 +38,8 @@
     name: traefik
     image: traefik:alpine
     state: started
-    recreate: yes
-    pull: yes
+    recreate: true
+    pull: true
     ports:
       - "80:80"
       - "443:443"
