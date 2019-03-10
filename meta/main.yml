@@ -1,0 +1,13 @@
+galaxy_info:
+  author: Marcos Cela
+  description: Set up traefik with docker backend and automatic SSL/TLS certificates via Let's Encrypt
+  issue_tracker_url: https://gitlab.com/Marcos.Cela/ansible-traefik/issues
+  license: MIT
+  min_ansible_version: 2.7.8
+  galaxy_tags:
+    - traefik
+    - proxy
+    - https
+    - TLS
+    - letsencrypt
+    - docker
