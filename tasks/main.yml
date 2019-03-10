@@ -1,6 +1,7 @@
 ---
 - name: "Assert that required variable: {{ item }} is defined"
-  assert: { that: "{{ item }} is defined" }
+  assert:
+    that: "{{ item }} is defined"
   with_items: "{{ required_variables }}"
 
 - name: Ensure configuration and acme paths exist
