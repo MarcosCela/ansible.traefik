@@ -1,7 +1,7 @@
 ansible.traefik
 =========
 
-Set up Traefik with docker backend and automatic SSL/TLS certificates via Let's Encrypt
+Set up [Traefik] with docker backend and automatic SSL/TLS certificates via [Let's Encrypt].
 
 Requirements
 ------------
@@ -9,26 +9,45 @@ Requirements
 You need a target machine with:
 - Docker
 
+If you want to use Docker, there are very useful roles to install it:
+
+- [geerlingguy.docker]: Also known as the "Ansible guy", he has a lot of very
+  useful Ansible roles.
+
+
 Role Variables
 --------------
+The role requires the following variables, and will fail if they are not set:
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- ***docker_domain***: Is the  base domain used for frontend rules. If you are going
+  to use [Traefik] to expose a public URL, you can use your domain here. An example for
+  this variable is ***myorganization.org***. You can also override this variable with labels
+  for specific frontends.
+- ***acme_email***: We are using [Let's Encrypt] certificates, and you require an email
+  where you will receive notifications about the status of your certificates, like
+  certificates close to their expiration date. Example: ***my@mail.org***.
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: proxy
       roles:
-         - { role: ansible-traefik, x: 42 }
+         - role: ansible-traefik
+           acme_email: my@mail.org
+           docker_domain: myorganization.org
+           
 
 License
 -------
 
 MIT
+
+
+
+
+[geerlingguy.docker]: https://github.com/geerlingguy/ansible-role-docker
+[Traefik]: https://traefik.io/
+[Let's Encrypt]: https://letsencrypt.org/
