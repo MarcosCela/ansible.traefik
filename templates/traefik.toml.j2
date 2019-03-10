@@ -1,0 +1,51 @@
+debug = {{ debug_enabled }}
+defaultEntryPoints = ["https","http"]
+logLevel = "{{ log_level }}"
+
+# System and access logs
+[traefikLog]
+    format = "{{ general_log_format }}"
+[accessLog]
+    format = "{{ access_log_format }}"
+    [accessLog.fields]
+        defaultMode = "keep"
+        [accessLog.fields.headers]
+            defaultMode = "keep"
+            [accessLog.fields.headers.names]
+                "User-Agent" = "redact"
+                "Authorization" = "drop"
+                "Content-Type" = "keep"
+
+[entryPoints]
+    [entryPoints.http]
+        address = ":80"
+        compress = true
+        [entryPoints.http.redirect]
+            entryPoint = "https"
+    [entryPoints.https]
+        address = ":443"
+        compress = true
+        [entryPoints.https.tls]
+
+# Enable backend retry
+[retry]
+
+# ACME configuration for automatic lets-encrypt certs
+[acme]
+    email = "{{ acme_email }}"
+    storage = "{{ acme_file }}"
+    entryPoint = "https"
+    # Enable certificate generation on frontends host rules.
+    onHostRule = true
+    # Use a HTTP-01 ACME challenge.
+    [acme.httpChallenge]
+        entryPoint = "http"
+        acmeLogging = true
+    # Use a TLS-ALPN-01 ACME challenge.
+    [acme.tlsChallenge]
+
+[docker]
+    endpoint = "unix:///var/run/docker.sock"
+    domain = "{{ docker_domain }}"
+    watch = true
+    exposedByDefault = false
