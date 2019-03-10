@@ -1,0 +1,50 @@
+---
+- name: "Assert that required variable: {{ item }} is defined"
+  assert: { that: "{{ item }} is defined" }
+  with_items: "{{ required_variables }}"
+
+- name: Ensure configuration and acme paths exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ config_file | dirname }}"
+    - "{{ acme_file | dirname }}"
+
+- name: Ensure acme file ({{ acme_file }}) is present and has valid permissions
+  copy:
+    content: ""
+    dest: "{{ acme_file }}"
+    force: no
+    group: root
+    owner: root
+    mode: 0600
+
+- name: Copy traefik config file
+  template:
+    dest: "{{ config_file }}"
+    src: traefik.toml.j2
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Ensure the web network exists
+  docker_network:
+    name: "{{ docker_network }}"
+
+- name: Ensure traefik container is running
+  docker_container:
+    name: traefik
+    image: traefik:alpine
+    state: started
+    recreate: yes
+    pull: yes
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "{{ config_file }}:/etc/traefik/traefik.toml"
+      - "{{ acme_file }}:/etc/traefik/acme.json"
+    networks:
+      - name: "{{ docker_network }}"
