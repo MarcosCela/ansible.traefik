@@ -3,8 +3,13 @@ image: registry.gitlab.com/marcos.cela/ansible.ci:latest
 
 stages:
   - yaml-lint
+  - ansible-lint
 
 lint-yamlfile:
   stage: yaml-lint
   script:
     - yamllint .
+lint-ansible:
+  stage: ansible-lint
+  script:
+    - ansible-playbook test-playbook.yml --syntax-check
