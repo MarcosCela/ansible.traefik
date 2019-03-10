@@ -1,0 +1,23 @@
+---
+# Log format is 'json' or 'common'
+access_log_format: "common"
+general_log_format: "common"
+
+# Debugging and log level
+log_level: "INFO"
+debug_enabled: "false"
+
+# Location on the host where the acme file (acme.json) and the traefik config
+# will be stored. The acme_file contains information for automatic HTTPs via ACME
+# on Let's encrypt
+acme_file: "/etc/traefik/acme.json"
+# And the main config file for traefik
+config_file: "/etc/traefik/traefik.toml"
+
+# Docker network where traefik will be deployed
+# When you deploy other containers, you will also deploy them in this network
+docker_network: web
+
+required_variables:
+  - docker_domain
+  - acme_email
