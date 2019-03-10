@@ -37,10 +37,10 @@ logLevel = "{{ log_level }}"
     entryPoint = "https"
     # Enable certificate generation on frontends host rules.
     onHostRule = true
-    # Use a HTTP-01 ACME challenge.
+    acmeLogging = true
+    # Use a HTTP-01 ACME challenge, and ensure that we log everything
     [acme.httpChallenge]
         entryPoint = "http"
-        acmeLogging = true
     # Use a TLS-ALPN-01 ACME challenge.
     [acme.tlsChallenge]
 
