@@ -33,7 +33,7 @@ logLevel = "{{ log_level }}"
 # ACME configuration for automatic lets-encrypt certs
 [acme]
     email = "{{ acme_email }}"
-    storage = "{{ acme_file }}"
+    storage = "/etc/traefik/acme.json"
     entryPoint = "https"
     # Enable certificate generation on frontends host rules.
     onHostRule = true
