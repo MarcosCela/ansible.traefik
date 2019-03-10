@@ -48,4 +48,6 @@ logLevel = "{{ log_level }}"
     endpoint = "unix:///var/run/docker.sock"
     domain = "{{ docker_domain }}"
     watch = true
+    # Do not expose services by default.
+    #Instead expose only services that are correctly labeled
     exposedByDefault = false

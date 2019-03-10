@@ -17,7 +17,7 @@ config_file: "/etc/traefik/traefik.toml"
 # Docker network where traefik will be deployed
 # When you deploy other containers, you will also deploy them in this network
 docker_network: web
-
+# Default docker domain (optional)
+docker_domain: ""
 required_variables:
-  - docker_domain
   - acme_email

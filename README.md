@@ -19,10 +19,6 @@ Role Variables
 --------------
 The role requires the following variables, and will fail if they are not set:
 
-- ***docker_domain***: Is the  base domain used for frontend rules. If you are going
-  to use [Traefik] to expose a public URL, you can use your domain here. An example for
-  this variable is ***myorganization.org***. You can also override this variable with labels
-  for specific frontends.
 - ***acme_email***: We are using [Let's Encrypt] certificates, and you require an email
   where you will receive notifications about the status of your certificates, like
   certificates close to their expiration date. Example: ***my@mail.org***.
@@ -36,7 +32,6 @@ Example Playbook
   roles:
      - role: ansible-traefik
        acme_email: my@mail.org
-       docker_domain: myorganization.org
 ```
 
 License
