@@ -1,7 +1,8 @@
 ansible.traefik
 =========
-![pipeline status](https://gitlab.com/Marcos.Cela/ansible-traefik/badges/master/pipeline.svg)
-![MIT license](https://img.shields.io/static/v1.svg?label=license&message=MIT&color=blue&style=flat-square)
+[![pipeline status](https://gitlab.com/Marcos.Cela/ansible-traefik/badges/master/pipeline.svg)](https://gitlab.com/Marcos.Cela/ansible-traefik/pipelines)
+[![MIT license](https://img.shields.io/static/v1.svg?label=license&message=MIT&color=blue&style=flat-square)](https://opensource.org/licenses/MIT)
+
 ------------
 Set up [Traefik] with docker backend and automatic SSL/TLS certificates via [Let's Encrypt].
 
