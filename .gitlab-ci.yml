@@ -11,4 +11,4 @@ lint-yamlfile:
 lint-ansible:
   stage: lint
   script:
-    - ansible-playbook test-playbook.yml --syntax-check
+    - ansible-playbook test-playbook.yml --syntax-check -i "localhost,"
