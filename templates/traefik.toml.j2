@@ -12,7 +12,6 @@ logLevel = "{{ log_level }}"
         [accessLog.fields.headers]
             defaultMode = "keep"
             [accessLog.fields.headers.names]
-                "User-Agent" = "redact"
                 "Authorization" = "drop"
                 "Content-Type" = "keep"
 
@@ -51,3 +50,6 @@ logLevel = "{{ log_level }}"
     # Do not expose services by default.
     #Instead expose only services that are correctly labeled
     exposedByDefault = false
+[web]
+# To enable Traefik to export internal metrics to Prometheus
+[web.metrics.prometheus]
